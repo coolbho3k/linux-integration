@@ -1513,30 +1513,33 @@ device_initcall(amd_pstate_init);
 
 static int __init amd_pstate_param(char *str)
 {
-	if (!str)
-		return -EINVAL;
+	// if (!str)
+	// 	return -EINVAL;
 
-	/*
-	 * Disable amd-pstate driver by default for now
-	 * append amd-pstate=active or amd-pstate=active
-	 * to enable driver loaded
-	 */
-	if (!strcmp(str, "active")) {
-		cppc_load = 1;
-		default_pstate_driver = &amd_pstate_epp_driver;
-	} else if (!strcmp(str, "passive")) {
-		epp_off = 1;
-		cppc_load = 1;
-		default_pstate_driver = &amd_pstate_driver;
-	}
+	// /*
+	//  * Disable amd-pstate driver by default for now
+	//  * append amd-pstate=active or amd-pstate=active
+	//  * to enable driver loaded
+	//  */
+	// if (!strcmp(str, "active")) {
+	// 	cppc_load = 1;
+	// 	default_pstate_driver = &amd_pstate_epp_driver;
+	// } else if (!strcmp(str, "passive")) {
+	// 	epp_off = 1;
+	// 	cppc_load = 1;
+	// 	default_pstate_driver = &amd_pstate_driver;
+	// }
 
-	/*
-	 * support shared memory type CPPC which has no MSR function.
-	 * enable amd-pstate on processors with shared memory solution
-	 * (amd-pstate=legacy_cppc enabled), it is disabled by default.
-	 */
-	if (!strcmp(str, "legacy_cppc"))
-		shared_mem = true;
+	// /*
+	//  * support shared memory type CPPC which has no MSR function.
+	//  * enable amd-pstate on processors with shared memory solution
+	//  * (amd-pstate=legacy_cppc enabled), it is disabled by default.
+	//  */
+	// if (!strcmp(str, "legacy_cppc"))
+	// 	shared_mem = true;
+
+	cppc_load = 1;
+	default_pstate_driver = &amd_pstate_epp_driver;
 
 	return 0;
 }
